@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Star, ArrowRight, CheckCircle2, Loader2, Clock, Phone } from "lucide-react";
+import { Star, ArrowRight, CheckCircle2, Loader2, Clock, Phone, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,6 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { supabase } from "@/lib/supabase";
 
 const highlights = [
   "Background-checked & insured",
@@ -33,13 +34,32 @@ export function Hero() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const setField = (key: string, value: string) =>
     setForm((prev) => ({ ...prev, [key]: value }));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
+    setSubmitError(null);
+
+    const { error } = await supabase.from("quote_requests").insert({
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      service: form.service,
+      bedrooms: form.bedrooms,
+      bathrooms: form.bathrooms,
+      frequency: form.frequency,
+      notes: form.notes,
+    });
+
+    if (error) {
+      setSubmitError("Something went wrong while submitting your request. Please try again.");
+      setSending(false);
+      return;
+    }
 
     const subject = `Free Quote Request from ${form.name || "Website Visitor"}`;
     const body = [
@@ -150,6 +170,12 @@ export function Hero() {
               </div>
             ) : (
               <form id="hero-quote-form" onSubmit={handleSubmit} className="grid gap-4">
+                {submitError && (
+                  <div className="flex items-center gap-2 rounded-lg border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive">
+                    <AlertCircle className="h-4 w-4 shrink-0" />
+                    {submitError}
+                  </div>
+                )}
                 <div className="grid gap-2">
                   <Label htmlFor="hero-name">Full Name</Label>
                   <Input
