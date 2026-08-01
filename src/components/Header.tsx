@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -32,13 +32,12 @@ export function Header() {
       )}
     >
       <div className="container flex h-18 items-center justify-between py-4">
-        <a href="#top" className="flex items-center gap-2 font-bold text-lg tracking-tight">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-sm">
-            <Sparkles className="h-5 w-5" />
-          </span>
-          <span>
-            Squeegee <span className="text-primary">Maids</span>
-          </span>
+        <a href="#top" className="flex items-center">
+          <img
+            src="/squeegee_maids_logo_new.svg"
+            alt="Squeegee Maids"
+            className="h-10 w-auto md:h-12"
+          />
         </a>
 
         <nav className="hidden md:flex items-center gap-7">

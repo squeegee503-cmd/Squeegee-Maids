@@ -1,4 +1,4 @@
-import { Sparkles, Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
 
 export function Footer() {
   return (
@@ -6,13 +6,12 @@ export function Footer() {
       <div className="container py-14">
         <div className="grid gap-10 md:grid-cols-3">
           <div className="flex flex-col gap-4">
-            <a href="#top" className="flex items-center gap-2 font-bold text-lg tracking-tight">
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <Sparkles className="h-5 w-5" />
-              </span>
-              <span>
-                Squeegee <span className="text-primary">Maids</span>
-              </span>
+            <a href="#top" className="flex items-center">
+              <img
+                src="/squeegee_maids_logo_new.svg"
+                alt="Squeegee Maids"
+                className="h-12 w-auto"
+              />
             </a>
             <p className="text-sm text-muted-foreground max-w-xs">
               Fast, reliable home cleaning in Portland. Background-checked, insured, and eco-friendly.
@@ -29,11 +28,11 @@ export function Footer() {
               (971) 302-4242
             </a>
             <a
-              href="mailto:hello@squeegeemaids.com"
+              href="mailto:support@squeegeemaids.com"
               className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               <Mail className="h-4 w-4 text-primary" />
-              hello@squeegeemaids.com
+              support@squeegeemaids.com
             </a>
             <p className="flex items-center gap-2 text-sm text-muted-foreground">
               <MapPin className="h-4 w-4 text-primary" />
