@@ -5,6 +5,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Services } from "@/components/sections/Services";
 import { HowItWorks } from "@/components/sections/HowItWorks";
+import { Gallery } from "@/components/sections/Gallery";
 import { DeepClean } from "@/components/sections/DeepClean";
 import { WhyUs } from "@/components/sections/WhyUs";
 import { ServiceArea } from "@/components/sections/ServiceArea";
@@ -21,6 +22,7 @@ export default function App() {
         <Testimonials />
         <Services />
         <HowItWorks />
+        <Gallery />
         <DeepClean />
         <WhyUs />
         <ServiceArea />
