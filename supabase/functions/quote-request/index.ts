@@ -167,15 +167,36 @@ Deno.serve(async (req: Request) => {
       });
     }
 
-    const body = await req.json();
-    if (!validatePayload(body)) {
-      return new Response(JSON.stringify({ error: "Invalid request. Please fill out all required fields." }), {
-        status: 400,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
+  const body = await req.json();
 
-    const payload = body as QuotePayload;
+const raw = body as Record<string, unknown>;
+
+const payload: QuotePayload = {
+  name: String(raw.name ?? raw.fullName ?? "").trim(),
+  email: String(raw.email ?? "").trim(),
+  phone: String(raw.phone ?? "").trim(),
+  service: String(raw.service ?? raw.serviceType ?? "").trim(),
+  bedrooms: raw.bedrooms ? String(raw.bedrooms) : undefined,
+  bathrooms: raw.bathrooms ? String(raw.bathrooms) : undefined,
+  frequency: raw.frequency ? String(raw.frequency) : undefined,
+  notes: raw.notes
+    ? String(raw.notes)
+    : raw.message
+      ? String(raw.message)
+      : undefined,
+};
+
+if (!validatePayload(payload)) {
+  return new Response(
+    JSON.stringify({
+      error: "Please enter your name, a valid email, a 10-digit phone number, and select a service.",
+    }),
+    {
+      status: 400,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    },
+  );
+}
 
     const supabase = createClient(
       Deno.env.get("SUPABASE_URL")!,
