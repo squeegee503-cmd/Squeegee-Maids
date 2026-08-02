@@ -8,7 +8,7 @@ const corsHeaders = {
 };
 
 const SUPPORT_EMAIL = "support@squeegeemaids.com";
-const FROM_EMAIL = "Squeegee Maids <onboarding@resend.dev>";
+const FROM_EMAIL = "Squeegee Maids <support@squeegeemaids.com>";
 
 type QuotePayload = {
   name: string;
@@ -129,9 +129,15 @@ async function sendEmail(email: EmailMessage): Promise<void> {
     },
     body: JSON.stringify(email),
   });
+
   if (!res.ok) {
     const detail = await res.text();
     throw new Error(`Resend API error ${res.status}: ${detail}`);
+  }
+
+  const data = await res.json();
+  if (!data || !data.id) {
+    throw new Error(`Resend did not return a message id for ${email.to}`);
   }
 }
 
@@ -182,20 +188,15 @@ Deno.serve(async (req: Request) => {
       });
     }
 
-    const supportEmail = buildSupportEmail(payload);
-    const customerEmail = buildCustomerEmail(payload);
-
-    const results = await Promise.allSettled([
-      sendEmail(supportEmail),
-      sendEmail(customerEmail),
-    ]);
-
-    const [supportResult, customerResult] = results;
-    if (supportResult.status === "rejected") {
-      console.error("Support notification email failed:", supportResult.reason);
-    }
-    if (customerResult.status === "rejected") {
-      console.error("Customer confirmation email failed:", customerResult.reason);
+    try {
+      await sendEmail(buildSupportEmail(payload));
+      await sendEmail(buildCustomerEmail(payload));
+    } catch (emailErr) {
+      console.error("Email sending failed:", emailErr);
+      return new Response(JSON.stringify({ error: "Your request was saved, but we could not send the email notifications. Please try again or call us." }), {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
     return new Response(JSON.stringify({ success: true }), {
