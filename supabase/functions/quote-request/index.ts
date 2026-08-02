@@ -120,11 +120,11 @@ type EmailMessage = {
   html: string;
 };
 
-async function sendEmail(email: EmailMessage): Promise<void> {
+async function sendEmail(email: EmailMessage, apiKey: string): Promise<void> {
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${Deno.env.get("RESEND_API_KEY")}`,
+      Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify(email),
@@ -132,10 +132,10 @@ async function sendEmail(email: EmailMessage): Promise<void> {
 
   if (!res.ok) {
     const detail = await res.text();
-    throw new Error(`Resend API error ${res.status}: ${detail}`);
+    throw new Error(`Resend API error ${res.status} sending to ${email.to}: ${detail}`);
   }
 
-  const data = await res.json();
+  const data = await res.json().catch(() => null);
   if (!data || !data.id) {
     throw new Error(`Resend did not return a message id for ${email.to}`);
   }
@@ -189,11 +189,16 @@ Deno.serve(async (req: Request) => {
     }
 
     try {
-      await sendEmail(buildSupportEmail(payload));
-      await sendEmail(buildCustomerEmail(payload));
+      const apiKey = Deno.env.get("RESEND_API_KEY")?.trim();
+      if (!apiKey) {
+        throw new Error("RESEND_API_KEY is not set or is empty.");
+      }
+      await sendEmail(buildSupportEmail(payload), apiKey);
+      await sendEmail(buildCustomerEmail(payload), apiKey);
     } catch (emailErr) {
-      console.error("Email sending failed:", emailErr);
-      return new Response(JSON.stringify({ error: "Your request was saved, but we could not send the email notifications. Please try again or call us." }), {
+      const errMsg = emailErr instanceof Error ? emailErr.message : String(emailErr);
+      console.error("Email sending failed:", errMsg);
+      return new Response(JSON.stringify({ error: `Your request was saved, but email notifications failed: ${errMsg}` }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
