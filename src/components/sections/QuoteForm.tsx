@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { ArrowRight, Loader2, Clock, Phone } from "lucide-react";
+import { ArrowRight, Loader2, Clock, Phone, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "@/components/ui/use-toast";
+import { submitQuote } from "@/lib/quote";
 
 const schema = z.object({
   name: z.string().min(2, "Please enter your name"),
@@ -31,6 +32,7 @@ type FormValues = z.infer<typeof schema>;
 
 export function QuoteForm() {
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const {
     register,
@@ -58,15 +60,25 @@ export function QuoteForm() {
   const bathrooms = watch("bathrooms");
   const frequency = watch("frequency");
 
-  const onSubmit = async (_data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 900));
-    setSubmitting(false);
-    reset();
-    toast({
-      title: "Quote request sent!",
-      description: "We'll get back to you with an exact price within 24 hours.",
-    });
+    setSubmitError(null);
+    try {
+      await submitQuote(data);
+      reset();
+      toast({
+        title: "Quote request sent!",
+        description: "We'll get back to you with an exact price within 24 hours.",
+      });
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong while submitting your request. Please try again.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -116,6 +128,12 @@ export function QuoteForm() {
         <Card className="shadow-xl">
           <CardContent className="p-6 md:p-8">
             <form onSubmit={handleSubmit(onSubmit)} className="grid gap-5">
+              {submitError && (
+                <div className="flex items-center gap-2 rounded-lg border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive">
+                  <AlertCircle className="h-4 w-4 shrink-0" />
+                  {submitError}
+                </div>
+              )}
               <div className="grid gap-2">
                 <Label htmlFor="name">Full Name</Label>
                 <Input id="name" placeholder="Jane Doe" {...register("name")} />

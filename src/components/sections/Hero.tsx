@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { supabase } from "@/lib/supabase";
+import { submitQuote } from "@/lib/quote";
 
 const highlights = [
   "Background-checked & insured",
@@ -18,8 +18,6 @@ const highlights = [
   "Flexible scheduling",
   "No contracts",
 ];
-
-const SUPPORT_EMAIL = "support@squeegeemaids.com";
 
 export function Hero() {
   const [form, setForm] = useState({
@@ -44,42 +42,18 @@ export function Hero() {
     setSending(true);
     setSubmitError(null);
 
-    const { error } = await supabase.from("quote_requests").insert({
-      name: form.name,
-      email: form.email,
-      phone: form.phone,
-      service: form.service,
-      bedrooms: form.bedrooms,
-      bathrooms: form.bathrooms,
-      frequency: form.frequency,
-      notes: form.notes,
-    });
-
-    if (error) {
-      setSubmitError("Something went wrong while submitting your request. Please try again.");
+    try {
+      await submitQuote(form);
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong while submitting your request. Please try again.",
+      );
+    } finally {
       setSending(false);
-      return;
     }
-
-    const subject = `Free Quote Request from ${form.name || "Website Visitor"}`;
-    const body = [
-      `Name: ${form.name}`,
-      `Email: ${form.email}`,
-      `Phone: ${form.phone}`,
-      `Service Type: ${form.service}`,
-      `Bedrooms: ${form.bedrooms}`,
-      `Bathrooms: ${form.bathrooms}`,
-      `Frequency: ${form.frequency}`,
-      form.notes ? `Notes: ${form.notes}` : "",
-    ]
-      .filter(Boolean)
-      .join("\n");
-
-    const mailto = `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    window.location.href = mailto;
-    setSubmitted(true);
-    setSending(false);
   };
 
   return (
@@ -153,11 +127,11 @@ export function Hero() {
                   <CheckCircle2 className="h-8 w-8 text-primary" />
                 </div>
                 <div>
-                  <p className="text-lg font-bold">Your email is ready to send!</p>
+                  <p className="text-lg font-bold">Your quote request is in!</p>
                   <p className="mt-1 text-sm text-muted-foreground max-w-xs">
-                    Your email app just opened with your quote details addressed to us at
-                    {" "}<span className="font-medium text-primary">{SUPPORT_EMAIL}</span>.
-                    Just hit send and we'll reply with your exact price.
+                    We saved your details and sent a confirmation to
+                    {" "}<span className="font-medium text-primary">{form.email}</span>.
+                    We'll reply with your exact price within 24 hours.
                   </p>
                 </div>
                 <Button
@@ -285,7 +259,7 @@ export function Hero() {
                   {sending ? (
                     <>
                       <Loader2 className="h-4 w-4 animate-spin" />
-                      Opening your email...
+                      Sending your request...
                     </>
                   ) : (
                     <>
