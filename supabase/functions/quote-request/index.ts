@@ -60,7 +60,7 @@ function buildSupportEmail(p: QuotePayload) {
   return {
     from: FROM_EMAIL,
     to: SUPPORT_EMAIL,
-    replyTo: p.email,
+    reply_to: p.email,
     subject: `New Quote Request from ${p.name}`,
     text,
     html,
@@ -111,7 +111,16 @@ function buildCustomerEmail(p: QuotePayload) {
   };
 }
 
-async function sendEmail(email: ReturnType<typeof buildSupportEmail>) {
+type EmailMessage = {
+  from: string;
+  to: string;
+  reply_to?: string;
+  subject: string;
+  text: string;
+  html: string;
+};
+
+async function sendEmail(email: EmailMessage): Promise<void> {
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -173,12 +182,21 @@ Deno.serve(async (req: Request) => {
       });
     }
 
-    const [supportEmail, customerEmail] = [
-      buildSupportEmail(payload),
-      buildCustomerEmail(payload),
-    ];
+    const supportEmail = buildSupportEmail(payload);
+    const customerEmail = buildCustomerEmail(payload);
 
-    await Promise.all([sendEmail(supportEmail), sendEmail(customerEmail)]);
+    const results = await Promise.allSettled([
+      sendEmail(supportEmail),
+      sendEmail(customerEmail),
+    ]);
+
+    const [supportResult, customerResult] = results;
+    if (supportResult.status === "rejected") {
+      console.error("Support notification email failed:", supportResult.reason);
+    }
+    if (customerResult.status === "rejected") {
+      console.error("Customer confirmation email failed:", customerResult.reason);
+    }
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
