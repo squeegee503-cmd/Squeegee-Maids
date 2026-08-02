@@ -21,6 +21,15 @@ type QuotePayload = {
   notes?: string;
 };
 
+type EmailMessage = {
+  from: string;
+  to: string;
+  reply_to?: string;
+  subject: string;
+  text: string;
+  html: string;
+};
+
 function escapeHtml(value: string): string {
   return value
     .replace(/&/g, "&amp;")
@@ -41,8 +50,8 @@ function validatePayload(data: unknown): data is QuotePayload {
   );
 }
 
-function buildSupportEmail(p: QuotePayload) {
-  const rows = [
+function buildSupportEmail(p: QuotePayload): EmailMessage {
+  const rows: [string, string][] = [
     ["Name", p.name],
     ["Email", p.email],
     ["Phone", p.phone],
@@ -55,7 +64,7 @@ function buildSupportEmail(p: QuotePayload) {
   const text = rows.map(([k, v]) => `${k}: ${v}`).join("\n");
   const html = `<table style="font-family:Arial,sans-serif;border-collapse:collapse;font-size:15px">
     <tr><td colspan="2" style="padding:12px 0 16px;font-size:18px;font-weight:bold">New Quote Request</td></tr>
-    ${rows.map(([k, v]) => `<tr><td style="padding:6px 16px 6px 0;color:#555;font-weight:bold">${escapeHtml(k)}</td><td style="padding:6px 0">${escapeHtml(String(v))}</td></tr>`).join("")}
+    ${rows.map(([k, v]) => `<tr><td style="padding:6px 16px 6px 0;color:#555;font-weight:bold">${escapeHtml(k)}</td><td style="padding:6px 0">${escapeHtml(v)}</td></tr>`).join("")}
   </table>`;
   return {
     from: FROM_EMAIL,
@@ -67,7 +76,7 @@ function buildSupportEmail(p: QuotePayload) {
   };
 }
 
-function buildCustomerEmail(p: QuotePayload) {
+function buildCustomerEmail(p: QuotePayload): EmailMessage {
   const firstName = p.name.split(" ")[0] || p.name;
   const text = [
     `Hi ${firstName},`,
@@ -111,33 +120,37 @@ function buildCustomerEmail(p: QuotePayload) {
   };
 }
 
-type EmailMessage = {
-  from: string;
-  to: string;
-  reply_to?: string;
-  subject: string;
-  text: string;
-  html: string;
-};
-
 async function sendEmail(email: EmailMessage, apiKey: string): Promise<void> {
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(email),
-  });
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 10000);
 
-  if (!res.ok) {
-    const detail = await res.text();
-    throw new Error(`Resend API error ${res.status} sending to ${email.to}: ${detail}`);
-  }
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(email),
+      signal: controller.signal,
+    });
 
-  const data = await res.json().catch(() => null);
-  if (!data || !data.id) {
-    throw new Error(`Resend did not return a message id for ${email.to}`);
+    if (!res.ok) {
+      const detail = await res.text();
+      throw new Error(`Resend API error ${res.status} sending to ${email.to}: ${detail}`);
+    }
+
+    const data = await res.json().catch(() => null);
+    if (!data || !data.id) {
+      throw new Error(`Resend did not return a message id for ${email.to}`);
+    }
+  } catch (err) {
+    if (err instanceof Error && err.name === "AbortError") {
+      throw new Error(`Resend API timed out after 10s sending to ${email.to}`);
+    }
+    throw err;
+  } finally {
+    clearTimeout(timeoutId);
   }
 }
 
@@ -189,19 +202,34 @@ Deno.serve(async (req: Request) => {
     }
 
     try {
-      const apiKey = Deno.env.get("RESEND_API_KEY")?.trim();
+      const rawKey = Deno.env.get("RESEND_API_KEY");
+      const apiKey = rawKey?.trim().replace(/^["'`]+|["'`]+$/g, "");
       if (!apiKey) {
         throw new Error("RESEND_API_KEY is not set or is empty.");
       }
-      await sendEmail(buildSupportEmail(payload), apiKey);
-      await sendEmail(buildCustomerEmail(payload), apiKey);
+      if (!apiKey.startsWith("re_")) {
+        console.warn("RESEND_API_KEY does not start with 're_' — it may be stored incorrectly.");
+      }
+
+      const results = await Promise.allSettled([
+        sendEmail(buildSupportEmail(payload), apiKey),
+        sendEmail(buildCustomerEmail(payload), apiKey),
+      ]);
+
+      const failures = results
+        .filter((r): r is PromiseRejectedResult => r.status === "rejected")
+        .map((r) => (r.reason instanceof Error ? r.reason.message : String(r.reason)));
+
+      if (failures.length > 0) {
+        throw new Error(failures.join(" | "));
+      }
     } catch (emailErr) {
       const errMsg = emailErr instanceof Error ? emailErr.message : String(emailErr);
       console.error("Email sending failed:", errMsg);
-      return new Response(JSON.stringify({ error: `Your request was saved, but email notifications failed: ${errMsg}` }), {
-        status: 500,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+      return new Response(
+        JSON.stringify({ error: `Your request was saved, but email notifications failed: ${errMsg}` }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
     }
 
     return new Response(JSON.stringify({ success: true }), {
@@ -210,9 +238,9 @@ Deno.serve(async (req: Request) => {
     });
   } catch (err) {
     console.error("Edge function error:", err);
-    return new Response(JSON.stringify({ error: "Something went wrong while sending your request. Please try again." }), {
-      status: 500,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    return new Response(
+      JSON.stringify({ error: "Something went wrong while sending your request. Please try again." }),
+      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+    );
   }
 });
