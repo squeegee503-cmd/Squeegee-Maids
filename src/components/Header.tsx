@@ -40,17 +40,22 @@ export function Header() {
           />
         </a>
 
-        <nav className="hidden md:flex items-center gap-7">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-white transition-colors hover:text-foreground"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
+       <nav className="hidden md:flex items-center gap-7">
+  {navLinks.map((link) => (
+    <a
+      key={link.href}
+      href={link.href}
+      className={cn(
+        "text-sm font-medium transition-colors",
+        scrolled
+          ? "text-[#2e2d2d] hover:text-[#e4517c]"
+          : "text-white hover:text-[#e4517c]"
+      )}
+    >
+      {link.label}
+    </a>
+  ))}
+</nav>
 
         <div className="hidden md:flex items-center gap-3">
           <a href="tel:+19713024242" className="text-sm font-semibold text-foreground hover:text-primary transition-colors">
