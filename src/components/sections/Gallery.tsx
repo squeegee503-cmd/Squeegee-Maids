@@ -54,7 +54,7 @@ export function Gallery() {
     setLightboxIndex((i) => (i === null ? null : (i + 1) % galleryItems.length));
 
   return (
-    <section id="gallery" className="bg-[#2e2d2d] py-20 lg:py-28">
+    <section id="gallery" className="bg-[#0ca2e7] py-20 lg:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <div className="inline-flex items-center gap-2 text-primary text-sm font-bold uppercase tracking-widest mb-3">
