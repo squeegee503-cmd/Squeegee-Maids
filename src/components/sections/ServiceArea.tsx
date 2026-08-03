@@ -1,9 +1,9 @@
 import { MapPin } from "lucide-react";
 
 const neighborhoods = [
-  "Downtown", "Pearl District", "Sellwood", "Alberta Arts", "Hawthorne",
-  "Mississippi", "Lloyd District", "St. Johns", "Montavilla", "Foster-Powell",
-  "Woodstock", "Beaumont", "Irvington", "Richmond", "Buckman",
+  "Portland", "Beaverton", "Hillsboro", "Tigard", "Lake Oswego",
+  "Vancouver", "Gresham", "Happy Valley", "Tualatin", "Milwaukie",
+  "Oregon City", "Bethany", "Aloha", "Cedar Mill", "Cornelius", "Camas", "Troutdale", "Fairview", "West Linn", "Clackamas","North Plains","Banks","Scappoose","Scappoose",
 ];
 
 export function ServiceArea() {
