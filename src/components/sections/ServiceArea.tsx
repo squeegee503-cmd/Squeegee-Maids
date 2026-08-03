@@ -3,7 +3,7 @@ import { MapPin } from "lucide-react";
 const neighborhoods = [
   "Portland", "Beaverton", "Hillsboro", "Tigard", "Lake Oswego",
   "Vancouver", "Gresham", "Happy Valley", "Tualatin", "Milwaukie",
-  "Oregon City", "Bethany", "Aloha", "Cedar Mill", "Cornelius", "Camas", "Troutdale", "Fairview", "West Linn", "Clackamas","North Plains","Banks","Scappoose","Scappoose",
+  "Oregon City", "Bethany", "Aloha", "Cedar Mill", "Cornelius", "Camas", "Troutdale", "Fairview", "West Linn", "Clackamas","North Plains","Banks","Scappoose","Damascus","Gladstone","Oak Grove","Jennings Lodge","Hazeldale","Bull Mountain","Rock Creek","Bonny Slope","Raleigh Hills","Garden Home","Sauvie Island",
 ];
 
 export function ServiceArea() {
