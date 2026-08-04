@@ -18,14 +18,14 @@ type GalleryItem = {
 };
 const galleryItems: GalleryItem[] = [
   { src: Gallery011, alt: "Professional Cleaning", tag: "Cleaning" },
-  { src: Gallery012, alt: "Kitchen Cleaning", tag: "Kitchen" },
+  { src: Gallery012, alt: "Kitchen Cleaning", tag: "Expert Cleaners" },
   { src: Gallery013, alt: "Bathroom Cleaning", tag: "Bathroom" },
   { src: Gallery014, alt: "Living Room", tag: "Living Room" },
-  { src: Gallery015, alt: "Bedroom Cleaning", tag: "Bedroom" },
+  { src: Gallery015, alt: "Bedroom Cleaning", tag: "One-Time Cleaning" },
   { src: Gallery016, alt: "Move Out Cleaning", tag: "Move Out" },
   { src: Gallery017, alt: "Deep Cleaning", tag: "Deep Clean" },
   { src: Gallery018, alt: "Office Cleaning", tag: "Commercial" },
-  { src: Gallery019, alt: "Eco-Friendly Products", tag: "Eco-Friendly" },
+  { src: Gallery019, alt: "Eco-Friendly Products", tag: "kitchen Cleaning" },
 ];
 
 
