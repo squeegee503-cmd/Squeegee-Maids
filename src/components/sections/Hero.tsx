@@ -253,7 +253,7 @@ export function Hero() {
                 </div>
 
                 <div className="grid gap-2">
-                  <Label htmlFor="hero-notes">Anything else? (optional)</Label>
+                  <Label htmlFor="hero-notes">House Size (SQFT)</Label>
                   <Input
                     id="hero-notes"
                     placeholder="Special requests, pets, parking, etc."
