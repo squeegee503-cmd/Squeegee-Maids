@@ -24,7 +24,7 @@ const galleryItems: GalleryItem[] = [
   { src: Gallery015, alt: "Bedroom Cleaning", tag: "One-Time Cleaning" },
   { src: Gallery016, alt: "Move Out Cleaning", tag: "Move Out" },
   { src: Gallery017, alt: "Deep Cleaning", tag: "Deep Clean" },
-  { src: Gallery018, alt: "Office Cleaning", tag: "Commercial" },
+  { src: Gallery018, alt: "Office Cleaning", tag: " Standard Cleaning" },
   { src: Gallery019, alt: "Eco-Friendly Products", tag: "kitchen Cleaning" },
 ];
 
