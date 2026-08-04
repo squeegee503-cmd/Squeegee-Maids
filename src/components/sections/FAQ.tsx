@@ -26,7 +26,10 @@ const faqs = [
     q: "Do I need to sign a contract?",
     a: "No contracts and no hidden fees. Transparent pricing with flexible scheduling — you're in control.",
   },
- 
+  {
+    q: "What if I'm not happy with the cleaning?",
+    a: "We back every clean with a 100% Satisfaction Guarantee. If any part doesn't meet our standards, tell us within 24 hours and we'll return to re-clean it — free.",
+  },
   {
     q: "How fast can I get a quote?",
     a: "Get your free quote in under 60 seconds. Tell us about your home and we'll send back an exact price — same-week appointments are often available.",
