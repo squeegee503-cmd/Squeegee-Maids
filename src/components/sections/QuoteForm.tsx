@@ -230,8 +230,8 @@ export function QuoteForm() {
               </div>
 
               <div className="grid gap-2">
-                <Label htmlFor="notes">House Size (SQFT</Label>
-                <Input id="notes" placeholder="Special requests, pets, parking, etc." {...register("notes")} />
+                <Label htmlFor="notes">House Size (SQFT)</Label>
+                <Input id="notes" placeholder="House Size (SQFT)" {...register("notes")} />
               </div>
 
               <Button
