@@ -9,7 +9,7 @@ import { Gallery } from "@/components/sections/Gallery";
 
 import { WhyUs } from "@/components/sections/WhyUs";
 import { ServiceArea } from "@/components/sections/ServiceArea";
-import { Guarantee } from "@/components/sections/Guarantee";
+
 import { QuoteForm } from "@/components/sections/QuoteForm";
 import { FAQ } from "@/components/sections/FAQ";
 
@@ -26,7 +26,7 @@ export default function App() {
       
         <WhyUs />
         <ServiceArea />
-        <Guarantee />
+    
         <QuoteForm />
         <FAQ />
       </main>
