@@ -70,7 +70,7 @@ function buildSupportEmail(p: QuotePayload): EmailMessage {
     from: FROM_EMAIL,
     to: SUPPORT_EMAIL,
     reply_to: p.email,
-    subject: `New Quote Request from ${p.name}`,
+   subject: `New Website Lead | ${p.name}`,
     text,
     html,
   };
