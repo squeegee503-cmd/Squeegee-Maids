@@ -6,7 +6,7 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { Services } from "@/components/sections/Services";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Gallery } from "@/components/sections/Gallery";
-import { DeepClean } from "@/components/sections/DeepClean";
+
 import { WhyUs } from "@/components/sections/WhyUs";
 import { ServiceArea } from "@/components/sections/ServiceArea";
 import { Guarantee } from "@/components/sections/Guarantee";
@@ -23,7 +23,7 @@ export default function App() {
         <Services />
         <HowItWorks />
         <Gallery />
-        <DeepClean />
+      
         <WhyUs />
         <ServiceArea />
         <Guarantee />
