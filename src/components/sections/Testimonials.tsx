@@ -77,6 +77,17 @@ export function Testimonials() {
           ))}
         </div>
       </div>
+
+      <div className="mt-12 flex justify-center">
+  <a
+    href="#quote"
+    className="inline-flex items-center rounded-full bg-sky-500 px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:bg-sky-600 hover:shadow-lg"
+  >
+    Get Your Free Quote
+  </a>
+</div>
+
+      
     </section>
   );
 }
