@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     q: "What cleaning products do you use?",
-    a: "We use eco-friendly, non-toxic products that are safe for kids, pets, and the environment. Your home will smell fresh — not like harsh chemicals.",
+    a: "We use standardized house cleaning products. We also offer eco-friendly, non-toxic products that are safe for kids, pets, and the environment. Your home will smell fresh — not like harsh chemicals.",
   },
   {
     q: "How often can I schedule a cleaning?",
