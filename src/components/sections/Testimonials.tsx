@@ -80,10 +80,10 @@ export function Testimonials() {
 
       <div className="mt-12 flex justify-center">
   <a
-    href="#quote"
+    href="https://maps.app.goo.gl/SP6wpSjXZ36RJD8X8"
     className="inline-flex items-center rounded-full bg-sky-500 px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:bg-sky-600 hover:shadow-lg"
   >
-    Get Your Free Quote
+    View all Reviews
   </a>
 </div>
 
