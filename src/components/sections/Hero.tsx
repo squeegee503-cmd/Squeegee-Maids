@@ -134,9 +134,10 @@ export function Hero() {
                   <CheckCircle2 className="h-8 w-8 text-primary" />
                 </div>
                 <div>
-                  <p className="text-lg font-bold">Thank you for requesting a free quote!</p>
+                  <p className="text-lg font-bold">Your quote request is in!</p>
                   <p className="mt-1 text-sm text-muted-foreground max-w-xs">
-                     Our team has received your information.</span>.
+                    Thank you! 
+                    {" "}<span className="font-medium text-primary">{form.email}</span>.
                     We'll reply with your exact price within 24 hours.
                   </p>
                 </div>
