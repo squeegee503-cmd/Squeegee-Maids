@@ -19,7 +19,7 @@ type GalleryItem = {
 const galleryItems: GalleryItem[] = [
   { src: Gallery011, alt: "Professional Cleaning", tag: "House Cleaning" },
   { src: Gallery012, alt: "Kitchen Cleaning", tag: "Expert Cleaners" },
-  { src: Gallery013, alt: "Bathroom Cleaning", tag: "Bathroom" },
+  { src: Gallery013, alt: "Bathroom Cleaning", tag: "" },
   { src: Gallery014, alt: "Living Room", tag: "Living Room" },
   { src: Gallery015, alt: "Bedroom Cleaning", tag: "One-Time Cleaning" },
   { src: Gallery016, alt: "Move Out Cleaning", tag: "Move Out" },
