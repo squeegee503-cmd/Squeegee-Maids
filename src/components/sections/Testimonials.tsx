@@ -3,8 +3,8 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const testimonials = [
   {
-    quote: "My apartment has never looked better. Team was on time, friendly, and every corner was spotless when they left.",
-    author: "Sarah M.",
+    quote: "I wanted to surprise my sister in Portland with a deep clean while she was away, and Squeegee Maids was fantastic to work with. Even though I was booking from out of province, their communication was top-notch. They were very thorough, and my sister said her place has never looked better. It's such a relief to find a reliable crew you can trust from a distance!",
+    author: "Helen Pagaddut",
     role: "Apartment clean",
   },
   {
@@ -43,7 +43,7 @@ export function Testimonials() {
             Social Proof
           </p>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">
-            Portland Loves a Squeegee-Clean Home
+            Oregonians Loves a Squeegee-Clean Home
           </h2>
         </div>
 
