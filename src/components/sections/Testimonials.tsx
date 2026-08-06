@@ -13,24 +13,24 @@ const testimonials = [
     role: "House cleaning",
   },
   {
-    quote: "We run an Airbnb and Squeegee Maids has been a game changer. Guests always mention how clean the place is.",
-    author: "Priya & Devon",
-    role: "Airbnb turnover",
+    quote: "I really appreciate how easy it was to schedule, and the communication from start to finish was excellent. If you are looking for reliable house cleaning near you with competitive pricing and friendly service, Squeegee Maids is the best choice. My home feels fresh, clean, and welcoming again. I will definitely use their residential cleaning services on a regular basis.",
+    author: "Jenifer Perez",
+    role: "Residential Cleaning",
   },
   {
-    quote: "Eco-friendly products that actually work. My kitchen sparkles and the house smells fresh, not like chemicals.",
-    author: "Megan R.",
-    role: "Recurring clean",
+    quote: "I recently used this housecleaning service, and they did an absolutely fantastic job! The team was on time, professional, and very thorough. Every corner of the house sparkled — from the floors to the countertops, even the little details I usually miss. They were also respectful of my home and worked efficiently without cutting any corners. I’m so impressed with the quality of their work and how fresh and clean everything feels. I’ll definitely be scheduling with them again and highly recommend their service to anyone looking for a reliable and detail-oriented cleaning crew.",
+    author: "Brent Fivecoat",
+    role: "Standard cleaning",
   },
   {
-    quote: "Reliable, thorough, and super easy to schedule. They've been cleaning our office weekly for over a year.",
-    author: "Carlos N.",
-    role: "Office cleaning",
+    quote: "Squeegee Maids cleaned our apartment following my birthday party and they absolutely nailed it. The entire place was immaculate by the time we returned.",
+    author: "James Fuson",
+    role: "Apartment Cleaning",
   },
   {
-    quote: "First deep clean took my breath away. I forgot my baseboards were white!",
-    author: "Lisa K.",
-    role: "Deep clean",
+    quote: "They did a deep clean of my apartment in 2 1/2 hours for a very reasonable rate. I’m very happy with how the appliances are on the floors. They clean the couch from dirt that my dog got on it very happy with the service and will be using them monthly going forward.",
+    author: "Jonny Fisher",
+    role: "Upholstery cleaning, Deep clean",
   },
 ];
 
