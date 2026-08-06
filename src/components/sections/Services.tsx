@@ -13,7 +13,7 @@ const services = [
     icon: Building2,
     title: "Airbnb Turnovers",
     description: "Guest-ready every stay. Fast turnarounds, spotless results.",
-    features: ["Same-day turnover", "Linen & restock", "5-star guest reviews"],
+    features: ["Same-day turnover","5-star guest reviews"],
   },
   {
     icon: Leaf,
