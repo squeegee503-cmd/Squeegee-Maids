@@ -132,7 +132,7 @@ export function QuoteForm() {
                   href="mailto:support@squeegeemaids.com"
                   className="text-xs text-primary hover:underline"
                 >
-                  Send us your questions anytime support@squeegeemaids.com
+                  Send us your questions anytime <br> support@squeegeemaids.com
                 </a>
               </div>
             </div>
