@@ -5,12 +5,12 @@ const testimonials = [
   {
     quote: "I wanted to surprise my sister in Portland with a deep clean while she was away, and Squeegee Maids was fantastic to work with. Even though I was booking from out of province, their communication was top-notch. They were very thorough, and my sister said her place has never looked better. It's such a relief to find a reliable crew you can trust from a distance!",
     author: "Helen Pagaddut",
-    role: "Apartment clean",
+    role: "Deep clean",
   },
   {
-    quote: "Booked a move-out clean and got my full deposit back. Landlord even asked who I used! Highly recommend.",
-    author: "James T.",
-    role: "Move-out clean",
+    quote: "I reached out to Squeegee Maids to take care of our home. Maria did a fantastic job with all of the small details, and even managed to contend with all of our dog fur without a problem! We haven’t had our house this clean in ages, and are looking forward to using them again.",
+    author: " Mike Bolster",
+    role: "House cleaning",
   },
   {
     quote: "We run an Airbnb and Squeegee Maids has been a game changer. Guests always mention how clean the place is.",
