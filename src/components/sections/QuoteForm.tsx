@@ -127,12 +127,12 @@ export function QuoteForm() {
                 <Phone className="h-5 w-5 text-primary" />
               </div>
               <div>
-                <p className="text-sm font-semibold">Prefer to talk?</p>
+                <p className="text-sm font-semibold">Prefer to Email?</p>
                 <a
-                  href="tel:+19713024242"
+                  href="mailto:support@squeegeemaids.com"
                   className="text-xs text-primary hover:underline"
                 >
-                  Call or text (971) 302-4242
+                  Send us your questions anytime support@squeegeemaids.com
                 </a>
               </div>
             </div>
