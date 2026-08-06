@@ -19,7 +19,7 @@ const services = [
     icon: Leaf,
     title: "Eco-Friendly Products",
     description: "Detailed deep clean so you start (or leave) with a spotless home.",
-    features: ["Non-toxic formulas", "Safe for kids & pets", "Fresh, not chemical"],
+    features: ["Non-toxic formulas", "Safe for kids & pets", "Fregrance Free Chemicals"],
   },
 ];
 
