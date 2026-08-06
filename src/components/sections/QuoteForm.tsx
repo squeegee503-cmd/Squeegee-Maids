@@ -122,6 +122,21 @@ export function QuoteForm() {
                 </a>
               </div>
             </div>
+              <div className="flex items-center gap-3 rounded-xl bg-background p-4 shadow-sm ring-1 ring-border/60">
+              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10">
+                <Phone className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold">Prefer to talk?</p>
+                <a
+                  href="tel:+19713024242"
+                  className="text-xs text-primary hover:underline"
+                >
+                  Call or text (971) 302-4242
+                </a>
+              </div>
+            </div>
+            
           </div>
         </div>
 
