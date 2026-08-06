@@ -29,7 +29,7 @@ const reasons = [
   },
   {
     icon: HeartHandshake,
-    title: "Satisfaction Guaranteed",
+    title: "Customer Satisfaction",
     description: "Not happy with a spot? Tell us and we'll come back and re-clean it free.",
   },
 ];
