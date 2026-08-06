@@ -3,7 +3,6 @@ import { X, ChevronLeft, ChevronRight, Camera } from "lucide-react";
 
 import Gallery011 from "@/assets/Gallery_011.png";
 import Gallery012 from "@/assets/Gallery_012.png";
-import Gallery013 from "@/assets/Gallery_013.png";
 import Gallery014 from "@/assets/Gallery_014.png";
 import Gallery015 from "@/assets/Gallery_015.png";
 import Gallery016 from "@/assets/Gallery_016.png";
@@ -19,13 +18,12 @@ type GalleryItem = {
 const galleryItems: GalleryItem[] = [
   { src: Gallery011, alt: "Professional Cleaning", tag: "House Cleaning" },
   { src: Gallery012, alt: "Kitchen Cleaning", tag: "Expert Cleaners" },
-  { src: Gallery013, alt: "Bathroom Cleaning", tag: "" },
-  { src: Gallery014, alt: "Living Room", tag: "Living Room" },
-  { src: Gallery015, alt: "Bedroom Cleaning", tag: "One-Time Cleaning" },
-  { src: Gallery016, alt: "Move Out Cleaning", tag: "Move Out" },
-  { src: Gallery017, alt: "Deep Cleaning", tag: "Deep Clean" },
+  { src: Gallery014, alt: "Living Room", tag: "Move Out Cleaning" },
+  { src: Gallery015, alt: "Bedroom Cleaning", tag: "Move Out Cleaning" },
+  { src: Gallery016, alt: "Move Out Cleaning", tag: "Recurring Cleaning" },
+  { src: Gallery017, alt: "Deep Cleaning", tag: "Friendly Staff" },
   { src: Gallery018, alt: "Office Cleaning", tag: " Standard Cleaning" },
-  { src: Gallery019, alt: "Eco-Friendly Products", tag: "kitchen Cleaning" },
+  { src: Gallery019, alt: "Eco-Friendly Products", tag: "Deep Kitchen Cleaning" },
 ];
 
 
