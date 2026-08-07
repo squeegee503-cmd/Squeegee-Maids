@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { ArrowRight, Loader2, Clock, Phone, AlertCircle } from "lucide-react";
+import { ArrowRight, Loader2, Clock, Phone, Mail, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -125,7 +125,7 @@ export function QuoteForm() {
 
  <div className="flex items-center gap-3 rounded-xl bg-background p-4 shadow-sm ring-1 ring-border/60">
               <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10">
-                <Phone className="h-5 w-5 text-primary" />
+                <Mail className="h-5 w-5 text-primary" />
               </div>
               <div>
                 <p className="text-sm font-semibold">Prefer to Email?</p>
