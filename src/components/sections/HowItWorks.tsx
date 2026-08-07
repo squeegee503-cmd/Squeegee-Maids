@@ -38,7 +38,7 @@ export function HowItWorks() {
             const Icon = step.icon;
             return (
               <div key={step.title} className="relative flex flex-col items-center text-center">
-                <div className="relative z-10 flex h-18 w-18 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-lg shadow-primary/20">
+                <div className="relative z-10 flex h-24 w-24 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-lg shadow-primary/20">
                   <Icon className="h-8 w-8" />
                   <span className="absolute -top-2 -right-2 flex h-7 w-7 items-center justify-center rounded-full bg-background text-sm font-bold text-primary ring-2 ring-primary/20">
                     {i + 1}
