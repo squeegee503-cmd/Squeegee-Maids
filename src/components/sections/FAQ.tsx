@@ -7,10 +7,8 @@ import {
 
 const faqs = [
   {
-    q: "What areas do you serve?",
-    a: "Portland", "Beaverton", "Hillsboro", "Tigard", "Lake Oswego",
-  "Vancouver", "Gresham", "Happy Valley", "Tualatin", "Milwaukie",
-  "Oregon City", "Bethany", "Aloha", "Cedar Mill", "Cornelius", "Camas", "Troutdale", "Fairview", "West Linn", "Clackamas","North Plains","Banks","Scappoose","Damascus","Gladstone","Oak Grove","Jennings Lodge","Hazeldale","Bull Mountain","Rock Creek","Bonny Slope","Raleigh Hills","Garden Home","Sauvie Island",
+   q: "What areas do you serve?",
+a: "We proudly serve Portland, OR, and the surrounding communities, including Beaverton, Hillsboro, Tigard, Lake Oswego, Vancouver, Gresham, Happy Valley, Tualatin, Milwaukie, Oregon City, Bethany, Aloha, Cedar Mill, Cornelius, Camas, Troutdale, Fairview, West Linn, Clackamas, North Plains, Banks, Scappoose, Damascus, Gladstone, Oak Grove, Jennings Lodge, Hazeldale, Bull Mountain, Rock Creek, Bonny Slope, Raleigh Hills, Garden Home, and Sauvie Island. If you're located anywhere in the Portland metro area, there's a good chance we serve your neighborhood. Contact us today to confirm availability in your area.",
   },
   {
     q: "Are your cleaners insured and background-checked?",
