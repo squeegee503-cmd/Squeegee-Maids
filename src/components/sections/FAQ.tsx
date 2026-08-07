@@ -8,7 +8,9 @@ import {
 const faqs = [
   {
     q: "What areas do you serve?",
-    a: "We serve all of Portland, OR and surrounding cities — from downtown condos to Sellwood bungalows. If you're in the Portland metro area, we've got you covered.",
+    a: "Portland", "Beaverton", "Hillsboro", "Tigard", "Lake Oswego",
+  "Vancouver", "Gresham", "Happy Valley", "Tualatin", "Milwaukie",
+  "Oregon City", "Bethany", "Aloha", "Cedar Mill", "Cornelius", "Camas", "Troutdale", "Fairview", "West Linn", "Clackamas","North Plains","Banks","Scappoose","Damascus","Gladstone","Oak Grove","Jennings Lodge","Hazeldale","Bull Mountain","Rock Creek","Bonny Slope","Raleigh Hills","Garden Home","Sauvie Island",
   },
   {
     q: "Are your cleaners insured and background-checked?",
