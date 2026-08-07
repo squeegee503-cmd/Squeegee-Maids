@@ -55,11 +55,11 @@ export function Gallery() {
     <section id="gallery" className="bg-[#f1f5f980] py-20 lg:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 text-white text-sm font-bold uppercase tracking-widest mb-3">
+          <div className="inline-flex items-center gap-2 text-black text-sm font-bold uppercase tracking-widest mb-3">
             <Camera size={16} />
             Our Work
           </div>
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-3">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-black tracking-tight mb-3">
             The Gallery
           </h2>
           <p className="text-white/70 text-lg max-w-xl mx-auto">
