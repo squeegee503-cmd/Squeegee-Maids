@@ -9,7 +9,7 @@ import Gallery016 from "@/assets/Gallery_016.png";
 import Gallery017 from "@/assets/Gallery_017.png";
 import Gallery018 from "@/assets/Gallery_018.png";
 import Gallery019 from "@/assets/Gallery_019.png";
-import Gallery020 from "@/assets/Gallery_019.png";
+import Gallery020 from "@/assets/Gallery_020.png";
 
 type GalleryItem = {
   src: string;
