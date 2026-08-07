@@ -130,10 +130,10 @@ export function QuoteForm() {
               <div>
                 <p className="text-sm font-semibold">Prefer to Email?</p>
                 <a
-                  href="tel:+19713024242"
+                  href="mailto:support@squeegeemaids.com"
                   className="text-xs text-primary hover:underline"
                 >
-                  Call or text (971) 302-4242
+                  Support@squeegeemaids.com
                 </a>
               </div>
             </div>
