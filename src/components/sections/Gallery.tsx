@@ -9,6 +9,7 @@ import Gallery016 from "@/assets/Gallery_016.png";
 import Gallery017 from "@/assets/Gallery_017.png";
 import Gallery018 from "@/assets/Gallery_018.png";
 import Gallery019 from "@/assets/Gallery_019.png";
+import Gallery020 from "@/assets/Gallery_019.png";
 
 type GalleryItem = {
   src: string;
@@ -24,6 +25,7 @@ const galleryItems: GalleryItem[] = [
   { src: Gallery017, alt: "Deep Cleaning", tag: "Friendly Staff" },
   { src: Gallery018, alt: "Office Cleaning", tag: " Standard Cleaning" },
   { src: Gallery019, alt: "Eco-Friendly Products", tag: "Deep Kitchen Cleaning" },
+    { src: Gallery020, alt: "Eco-Friendly Products", tag: "Deep Kitchen Cleaning" },
 ];
 
 
