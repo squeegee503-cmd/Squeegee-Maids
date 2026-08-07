@@ -30,7 +30,7 @@ const reasons = [
   {
     icon: HeartHandshake,
     title: "Customer Satisfaction",
-    description: "Not happy with a spot? Tell us and we'll come back and re-clean it free.",
+    description: "We're committed to delivering a high-quality cleaning experience with reliable service and attention to detail.",
   },
 ];
 
@@ -43,7 +43,7 @@ export function WhyUs() {
             Why Portland
           </p>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">
-            Why Portland Books Squeegee Maids
+            Why Oregonians Books Squeegee Maids
           </h2>
         </div>
 
